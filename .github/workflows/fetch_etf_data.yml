@@ -35,7 +35,7 @@ jobs:
       run: python scripts/github_fetch_etf_data.py
       
     - name: 抓取ETF期权数据
-      run: python scripts/github_fetch_option_data.py
+      run: python scripts/github_fetch_option_v2.py
       
     - name: 提交数据
       env:

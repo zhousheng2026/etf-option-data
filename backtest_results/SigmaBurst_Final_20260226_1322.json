@@ -1,0 +1,224 @@
+{
+  "trades": [
+    {
+      "datetime": "2026-01-20 11:30:00",
+      "action": "买入",
+      "signal": "中轨企稳",
+      "price": 8.26,
+      "position": 0.3,
+      "fixed_sigma": -0.7451482430900915,
+      "current_sigma": -1.346898541055798
+    },
+    {
+      "datetime": "2026-01-20 13:00:00",
+      "action": "卖出",
+      "signal": "跌破中轨止盈",
+      "price": 8.27,
+      "position": 0.0,
+      "pnl": 0.12106537530266086,
+      "fixed_sigma": -0.5207060011954837,
+      "current_sigma": -1.0949775183126615
+    },
+    {
+      "datetime": "2026-01-20 14:00:00",
+      "action": "买入",
+      "signal": "中轨企稳",
+      "price": 8.287,
+      "position": 0.3,
+      "fixed_sigma": -0.12208410360771575,
+      "current_sigma": -0.738623856584209
+    },
+    {
+      "datetime": "2026-01-20 14:30:00",
+      "action": "卖出",
+      "signal": "跌破中轨止盈",
+      "price": 8.315,
+      "position": 0.0,
+      "pnl": 0.33787860504402906,
+      "fixed_sigma": 0.5080273988838184,
+      "current_sigma": -0.12618827820184575
+    },
+    {
+      "datetime": "2026-01-20 15:00:00",
+      "action": "买入",
+      "signal": "中轨企稳",
+      "price": 8.324,
+      "position": 0.3,
+      "fixed_sigma": 0.6788207354463852,
+      "current_sigma": 0.05240816741094314
+    },
+    {
+      "datetime": "2026-01-21 11:00:00",
+      "action": "买入",
+      "signal": "放量确认",
+      "price": 8.397,
+      "position": 1.0,
+      "fixed_sigma": 2.3075442748905135,
+      "current_sigma": 1.440111706112831
+    },
+    {
+      "datetime": "2026-01-23 09:30:00",
+      "action": "卖出",
+      "signal": "6σ减仓",
+      "price": 8.563,
+      "position": 0.8,
+      "pnl": 2.8712157616530605,
+      "fixed_sigma": 6.011216981023725,
+      "current_sigma": 3.4281660371100973
+    },
+    {
+      "datetime": "2026-01-23 13:30:00",
+      "action": "卖出",
+      "signal": "8σ减仓",
+      "price": 8.675,
+      "position": 0.5,
+      "pnl": 4.216722729457002,
+      "fixed_sigma": 8.510080493595527,
+      "current_sigma": 1.9848306406936642
+    },
+    {
+      "datetime": "2026-01-23 14:00:00",
+      "action": "买入",
+      "signal": "突破前高",
+      "price": 8.685,
+      "position": 0.7,
+      "fixed_sigma": 8.733193307218004,
+      "current_sigma": 1.8046005293213483
+    },
+    {
+      "datetime": "2026-01-23 14:00:00",
+      "action": "买入",
+      "signal": "放量确认",
+      "price": 8.685,
+      "position": 1.0,
+      "fixed_sigma": 8.733193307218004,
+      "current_sigma": 1.8046005293213483
+    },
+    {
+      "datetime": "2026-01-26 13:00:00",
+      "action": "卖出",
+      "signal": "跌破中轨止盈",
+      "price": 8.567,
+      "position": 0.5,
+      "pnl": 2.9192695819317676,
+      "fixed_sigma": 6.100462106472708,
+      "current_sigma": -0.23881623923660242
+    },
+    {
+      "datetime": "2026-01-26 13:30:00",
+      "action": "买入",
+      "signal": "放量确认",
+      "price": 8.547,
+      "position": 1.0,
+      "fixed_sigma": 5.6542364792277535,
+      "current_sigma": -0.6069021899369612
+    },
+    {
+      "datetime": "2026-01-26 13:30:00",
+      "action": "卖出",
+      "signal": "跌破中轨止盈",
+      "price": 8.547,
+      "position": 0.5,
+      "pnl": 2.6790004805382117,
+      "fixed_sigma": 5.6542364792277535,
+      "current_sigma": -0.6069021899369612
+    },
+    {
+      "datetime": "2026-01-26 14:00:00",
+      "action": "卖出",
+      "signal": "跌破中轨止盈",
+      "price": 8.588,
+      "position": 0.0,
+      "pnl": 3.1715521383949943,
+      "fixed_sigma": 6.568999015079898,
+      "current_sigma": -0.1791437629474206
+    },
+    {
+      "datetime": "2026-01-26 15:00:00",
+      "action": "买入",
+      "signal": "中轨企稳",
+      "price": 8.564,
+      "position": 0.3,
+      "fixed_sigma": 0.4727539976582736,
+      "current_sigma": -0.9810096212388745
+    },
+    {
+      "datetime": "2026-01-27 09:30:00",
+      "action": "买入",
+      "signal": "放量确认",
+      "price": 8.475,
+      "position": 1.0,
+      "fixed_sigma": -0.378968791645092,
+      "current_sigma": -2.365707856311478
+    },
+    {
+      "datetime": "2026-01-27 13:00:00",
+      "action": "卖出",
+      "signal": "跌破中轨止盈",
+      "price": 8.565,
+      "position": 0.5,
+      "pnl": 0.011676786548335424,
+      "fixed_sigma": 0.48232391663920493,
+      "current_sigma": -0.271152369426804
+    },
+    {
+      "datetime": "2026-01-27 13:30:00",
+      "action": "买入",
+      "signal": "放量确认",
+      "price": 8.635,
+      "position": 1.0,
+      "fixed_sigma": 1.152218245304773,
+      "current_sigma": 0.8143259295424085
+    },
+    {
+      "datetime": "2026-01-29 13:30:00",
+      "action": "卖出",
+      "signal": "跌破中轨止盈",
+      "price": 8.588,
+      "position": 0.5,
+      "pnl": 0.28024287716019536,
+      "fixed_sigma": 0.7024320532007448,
+      "current_sigma": -1.695589167464903
+    },
+    {
+      "datetime": "2026-01-29 14:00:00",
+      "action": "卖出",
+      "signal": "跌破中轨止盈",
+      "price": 8.622,
+      "position": 0.0,
+      "pnl": 0.677253619803828,
+      "fixed_sigma": 1.0278092985525975,
+      "current_sigma": -0.8392463542052127
+    },
+    {
+      "datetime": "2026-01-29 14:30:00",
+      "action": "买入",
+      "signal": "中轨企稳",
+      "price": 8.593,
+      "position": 0.3,
+      "fixed_sigma": -0.3308569144215672,
+      "current_sigma": -1.4662649549741744
+    },
+    {
+      "datetime": "2026-01-30 10:30:00",
+      "action": "买入",
+      "signal": "放量确认",
+      "price": 8.339,
+      "position": 1.0,
+      "fixed_sigma": -4.371128850146222,
+      "current_sigma": -2.3481275468509737
+    }
+  ],
+  "summary": {
+    "total_buys": 12,
+    "total_sells": 10,
+    "win_rate": 100.0,
+    "final_pnl": 0.68,
+    "max_pnl": 4.22,
+    "sigma_distribution": {
+      "跌破中轨止盈": 8,
+      "6σ减仓": 1,
+      "8σ减仓": 1
+    }
+  }
+}

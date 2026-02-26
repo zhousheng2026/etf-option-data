@@ -1,6 +1,9 @@
 {
-  "update_time": "2026-02-26 05:02:24",
-  "daily_contracts": 0,
-  "minute_contracts": 0,
-  "total_contracts": 0
+  "update_time": "2026-02-26 13:26:42",
+  "data_sources": [
+    "option_risk_data.csv - 期权风险指标（Greeks、IV）",
+    "option_lhb.csv - 期权龙虎榜",
+    "option_daily_stats.csv - 期权日度统计"
+  ],
+  "note": "由于网络限制，部分实时数据接口无法访问，已使用可用接口"
 }
