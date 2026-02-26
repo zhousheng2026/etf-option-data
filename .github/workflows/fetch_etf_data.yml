@@ -1,4 +1,4 @@
-name: 抓取ETF期权数据
+name: 抓取ETF和期权数据
 
 on:
   schedule:
@@ -28,10 +28,13 @@ jobs:
     - name: 抓取ETF数据
       run: python scripts/github_fetch_etf_data.py
       
+    - name: 抓取ETF期权数据
+      run: python scripts/github_fetch_option_data.py
+      
     - name: 提交数据
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add data/
-        git diff --staged --quiet || git commit -m "更新ETF期权数据 - $(date +'%Y-%m-%d %H:%M')"
+        git diff --staged --quiet || git commit -m "更新ETF和期权数据 - $(date +'%Y-%m-%d %H:%M')"
         git push
