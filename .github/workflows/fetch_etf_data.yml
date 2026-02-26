@@ -1,0 +1,37 @@
+name: 抓取ETF期权数据
+
+on:
+  schedule:
+    # 每30分钟运行一次（交易时间）
+    - cron: '*/30 9-15 * * 1-5'
+    # 晚上也运行一次备份
+    - cron: '0 22 * * *'
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v4
+      
+    - name: 设置Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        
+    - name: 安装依赖
+      run: |
+        pip install akshare pandas numpy requests
+        
+    - name: 抓取ETF数据
+      run: python scripts/github_fetch_etf_data.py
+      
+    - name: 提交数据
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add data/
+        git diff --staged --quiet || git commit -m "更新ETF期权数据 - $(date +'%Y-%m-%d %H:%M')"
+        git push

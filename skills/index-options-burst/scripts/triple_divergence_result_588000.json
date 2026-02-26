@@ -1,0 +1,180 @@
+{
+  "params": {
+    "symbol": "588000",
+    "initial_capital": 1000000.0,
+    "bb_period": 20,
+    "bb_std": 2.0,
+    "macd_fast": 12,
+    "macd_slow": 26,
+    "macd_signal": 9
+  },
+  "result": {
+    "total_return": 0.25417988702358096,
+    "annual_return": 0.26217194211430295,
+    "max_drawdown": 0.12632179353226716,
+    "sharpe_ratio": 0.9514165575065372,
+    "win_rate": 0.5454545454545454,
+    "profit_factor": 3.2274616443192525,
+    "total_trades": 11,
+    "avg_win": 78556.64310299075,
+    "avg_loss": -29208.084281810956,
+    "strength_2_win_rate": 0.5454545454545454,
+    "strength_3_win_rate": 0.0
+  },
+  "trades": [
+    {
+      "entry_time": "2024-01-18T06:00:00",
+      "exit_time": "2024-01-18T06:30:00",
+      "entry_price": 4230.511028501668,
+      "exit_price": 4226.304970168086,
+      "pnl": -4405.2837213321545,
+      "pnl_pct": -0.014685150591239047,
+      "divergences": [
+        "Bollinger",
+        "Price"
+      ],
+      "signal_strength": 1,
+      "exit_reason": "Channel Breakdown: Below middle line"
+    },
+    {
+      "entry_time": "2024-01-18T09:00:00",
+      "exit_time": "2024-01-18T11:30:00",
+      "entry_price": 4214.522752146514,
+      "exit_price": 4196.839356248853,
+      "pnl": -25620.041256326385,
+      "pnl_pct": -0.08579922556976861,
+      "divergences": [
+        "Bollinger",
+        "Price"
+      ],
+      "signal_strength": 1,
+      "exit_reason": "Channel Breakdown: Below middle line"
+    },
+    {
+      "entry_time": "2024-01-24T13:30:00",
+      "exit_time": "2024-01-24T14:00:00",
+      "entry_price": 4400.151405278426,
+      "exit_price": 4390.262034142118,
+      "pnl": 17291.933864125815,
+      "pnl_pct": 0.05943350913695263,
+      "divergences": [
+        "Bollinger",
+        "Price"
+      ],
+      "signal_strength": 1,
+      "exit_reason": "Channel Breakdown: Below middle line"
+    },
+    {
+      "entry_time": "2024-01-24T16:30:00",
+      "exit_time": "2024-01-24T17:00:00",
+      "entry_price": 4381.246936990204,
+      "exit_price": 4380.158084386335,
+      "pnl": 233925.7922288727,
+      "pnl_pct": 0.7899038943775644,
+      "divergences": [
+        "Bollinger",
+        "Price"
+      ],
+      "signal_strength": 1,
+      "exit_reason": "Channel Breakdown: Below middle line"
+    },
+    {
+      "entry_time": "2024-01-24T19:30:00",
+      "exit_time": "2024-01-24T20:00:00",
+      "entry_price": 4367.827847701608,
+      "exit_price": 4374.978167762166,
+      "pnl": 123639.50648023465,
+      "pnl_pct": 0.33749299542912964,
+      "divergences": [
+        "Bollinger",
+        "Price"
+      ],
+      "signal_strength": 1,
+      "exit_reason": "Channel Breakdown: Below middle line"
+    },
+    {
+      "entry_time": "2024-02-02T16:30:00",
+      "exit_time": "2024-02-02T17:00:00",
+      "entry_price": 4673.820770574683,
+      "exit_price": 4667.432032491223,
+      "pnl": -3279.0745967341077,
+      "pnl_pct": -0.008128874413427519,
+      "divergences": [
+        "Bollinger",
+        "Price"
+      ],
+      "signal_strength": 1,
+      "exit_reason": "Channel Breakdown: Below middle line"
+    },
+    {
+      "entry_time": "2024-02-02T19:30:00",
+      "exit_time": "2024-02-02T20:00:00",
+      "entry_price": 4662.839660890937,
+      "exit_price": 4660.047065382838,
+      "pnl": 19363.744949761614,
+      "pnl_pct": 0.048112877736902204,
+      "divergences": [
+        "Bollinger",
+        "Price"
+      ],
+      "signal_strength": 1,
+      "exit_reason": "Channel Breakdown: Below middle line"
+    },
+    {
+      "entry_time": "2024-02-02T22:30:00",
+      "exit_time": "2024-02-02T23:00:00",
+      "entry_price": 4645.847802416462,
+      "exit_price": 4645.308825044234,
+      "pnl": 74600.38669471936,
+      "pnl_pct": 0.18273217426077254,
+      "divergences": [
+        "Bollinger",
+        "Price"
+      ],
+      "signal_strength": 1,
+      "exit_reason": "Channel Breakdown: Below middle line"
+    },
+    {
+      "entry_time": "2024-02-03T01:30:00",
+      "exit_time": "2024-02-03T02:00:00",
+      "entry_price": 4633.939409708964,
+      "exit_price": 4633.438944483952,
+      "pnl": -27066.86247996813,
+      "pnl_pct": -0.06285567014286267,
+      "divergences": [
+        "Bollinger",
+        "Price"
+      ],
+      "signal_strength": 1,
+      "exit_reason": "Channel Breakdown: Below middle line"
+    },
+    {
+      "entry_time": "2024-02-09T01:00:00",
+      "exit_time": "2024-02-09T02:00:00",
+      "entry_price": 4826.016320969589,
+      "exit_price": 4818.442931030339,
+      "pnl": 2518.4944002303578,
+      "pnl_pct": 0.011923320313868193,
+      "divergences": [
+        "Bollinger",
+        "Price"
+      ],
+      "signal_strength": 1,
+      "exit_reason": "Channel Breakdown: Below middle line"
+    },
+    {
+      "entry_time": "2024-02-09T04:30:00",
+      "exit_time": "2024-02-09T05:00:00",
+      "entry_price": 4801.291740596472,
+      "exit_price": 4802.484358949024,
+      "pnl": -85669.15935469398,
+      "pnl_pct": -0.21315958376650163,
+      "divergences": [
+        "Bollinger",
+        "Price"
+      ],
+      "signal_strength": 1,
+      "exit_reason": "Channel Breakdown: Below middle line"
+    }
+  ]
+}

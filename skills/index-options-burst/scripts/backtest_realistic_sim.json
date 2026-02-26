@@ -1,0 +1,29 @@
+{
+  "data_source": "realistic_simulation",
+  "data_characteristics": {
+    "annual_return": 0.08,
+    "annual_vol": 0.2,
+    "trend_strength": 0.3,
+    "actual_annual_return": 0.18179321596813494,
+    "actual_annual_vol": 0.1804670778352435
+  },
+  "data_range": "2020-01-01 00:00:00 to 2021-11-30 00:00:00",
+  "total_bars": 500,
+  "params": {
+    "initial_capital": 1000000,
+    "channel_bars": 20,
+    "volume_threshold": 1.3,
+    "body_threshold": 1.5
+  },
+  "result": {
+    "total_return": 0.1509066028556493,
+    "annual_return": 0.8023343201567787,
+    "max_drawdown": 0.04191243325764173,
+    "sharpe_ratio": 1.5895050259857322,
+    "win_rate": 1.0,
+    "profit_factor": Infinity,
+    "total_trades": 1,
+    "avg_win": 192819.03611329102,
+    "avg_loss": 0
+  }
+}

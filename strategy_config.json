@@ -1,0 +1,15 @@
+{
+  "timeframe": "15min",
+  "macd_fast": 8,
+  "macd_slow": 26,
+  "macd_signal": 9,
+  "boll_period": 15,
+  "boll_std": 1.5,
+  "divergence_lookback": 15,
+  "entry_range": 0.5,
+  "exit_type": "fixed_profit",
+  "exit_param": 0.03,
+  "capital": 10000,
+  "commission": 4.0,
+  "option_delta": 0.4
+}
