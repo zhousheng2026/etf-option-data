@@ -1,0 +1,29 @@
+{
+  "trades": [
+    {
+      "datetime": "2026-01-15 05:00:00",
+      "action": "\u4e70\u5165",
+      "signal": "\u4e2d\u8f68\u4f01\u7a33",
+      "price": 0.07535761568954734,
+      "position": 0.3,
+      "sigma": -0.6544100513814264
+    },
+    {
+      "datetime": "2026-01-15 15:30:00",
+      "action": "\u4e70\u5165",
+      "signal": "\u7a81\u7834\u524d\u9ad8",
+      "price": 0.083,
+      "position": 0.7,
+      "sigma": 2.704036115929156
+    },
+    {
+      "datetime": "2026-01-15 15:30:00",
+      "action": "\u4e70\u5165",
+      "signal": "\u653e\u91cf\u786e\u8ba4",
+      "price": 0.083,
+      "position": 1.0,
+      "sigma": 2.704036115929156
+    }
+  ],
+  "summary": {}
+}

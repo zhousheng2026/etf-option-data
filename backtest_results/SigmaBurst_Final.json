@@ -1,0 +1,135 @@
+{
+  "trades": [
+    {
+      "datetime": "2026-01-15 00:30:00",
+      "action": "\u4e70\u5165",
+      "signal": "\u4e2d\u8f68\u4f01\u7a33",
+      "price": 0.079,
+      "position": 0.3,
+      "sigma": -0.4955478655532107
+    },
+    {
+      "datetime": "2026-01-15 05:30:00",
+      "action": "\u4e70\u5165",
+      "signal": "\u7a81\u7834\u524d\u9ad8",
+      "price": 0.08800000000000001,
+      "position": 0.7,
+      "sigma": 2.857996628990219
+    },
+    {
+      "datetime": "2026-01-15 05:30:00",
+      "action": "\u4e70\u5165",
+      "signal": "\u653e\u91cf\u786e\u8ba4",
+      "price": 0.08800000000000001,
+      "position": 1.0,
+      "sigma": 2.857996628990219
+    },
+    {
+      "datetime": "2026-01-15 07:00:00",
+      "action": "\u5356\u51fa",
+      "signal": "6\u03c3\u51cf\u4ed3",
+      "price": 0.10300000000000001,
+      "position": 0.8,
+      "pnl": 30.379746835443044,
+      "sigma": 6.680585336135862
+    },
+    {
+      "datetime": "2026-01-15 07:30:00",
+      "action": "\u4e70\u5165",
+      "signal": "\u653e\u91cf\u786e\u8ba4",
+      "price": 0.10800000000000001,
+      "position": 1.0,
+      "sigma": 2.61331490186325
+    },
+    {
+      "datetime": "2026-01-15 07:30:00",
+      "action": "\u5356\u51fa",
+      "signal": "8\u03c3\u51cf\u4ed3",
+      "price": 0.10800000000000001,
+      "position": 0.7,
+      "pnl": 36.70886075949368,
+      "sigma": 8.175613086487752
+    },
+    {
+      "datetime": "2026-01-15 08:30:00",
+      "action": "\u4e70\u5165",
+      "signal": "\u653e\u91cf\u786e\u8ba4",
+      "price": 0.12,
+      "position": 1.0,
+      "sigma": 2.6443845614466177
+    },
+    {
+      "datetime": "2026-01-15 08:30:00",
+      "action": "\u5356\u51fa",
+      "signal": "10\u03c3\u51cf\u4ed3",
+      "price": 0.12,
+      "position": 0.7,
+      "pnl": 51.898734177215175,
+      "sigma": 11.763679687332283
+    },
+    {
+      "datetime": "2026-01-15 09:00:00",
+      "action": "\u4e70\u5165",
+      "signal": "\u653e\u91cf\u786e\u8ba4",
+      "price": 0.15,
+      "position": 1.0,
+      "sigma": 3.1897549647328
+    },
+    {
+      "datetime": "2026-01-15 09:00:00",
+      "action": "\u5356\u51fa",
+      "signal": "12\u03c3\u6e05\u4ed3",
+      "price": 0.15,
+      "position": 0.09999999999999998,
+      "pnl": 89.87341772151898,
+      "sigma": 20.73384618944362
+    },
+    {
+      "datetime": "2026-01-15 09:30:00",
+      "action": "\u4e70\u5165",
+      "signal": "\u7a81\u7834\u524d\u9ad8",
+      "price": 0.18,
+      "position": 0.7,
+      "sigma": 3.110868467775135
+    },
+    {
+      "datetime": "2026-01-15 10:00:00",
+      "action": "\u4e70\u5165",
+      "signal": "\u653e\u91cf\u786e\u8ba4",
+      "price": 0.21,
+      "position": 1.0,
+      "sigma": 2.919536317241542
+    },
+    {
+      "datetime": "2026-01-15 11:00:00",
+      "action": "\u5356\u51fa",
+      "signal": "6\u03c3\u51cf\u4ed3",
+      "price": 0.26,
+      "position": 0.8,
+      "pnl": 44.44444444444445,
+      "sigma": 6.051570866811413
+    },
+    {
+      "datetime": "2026-01-15 11:30:00",
+      "action": "\u4e70\u5165",
+      "signal": "\u653e\u91cf\u786e\u8ba4",
+      "price": 0.28,
+      "position": 1.0,
+      "sigma": 2.2505487507109434
+    }
+  ],
+  "summary": {
+    "total_buys": 9,
+    "total_sells": 5,
+    "win_rate": 100.0,
+    "final_pnl": 44.44,
+    "max_pnl": 89.87,
+    "min_pnl": 30.38,
+    "sigma_distribution": {
+      "6\u03c3\u51cf\u4ed3": 2,
+      "8\u03c3\u51cf\u4ed3": 1,
+      "10\u03c3\u51cf\u4ed3": 1,
+      "12\u03c3\u6e05\u4ed3": 1
+    }
+  }
+}

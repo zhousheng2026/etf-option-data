@@ -1,0 +1,21 @@
+{
+  "trades": [
+    {
+      "datetime": "2026-01-14 22:00:00",
+      "action": "\u4e70\u5165",
+      "signal": "\u7a81\u7834\u524d\u9ad8",
+      "price": 0.085,
+      "position": 0.7,
+      "sigma": 4.2485291572496005
+    },
+    {
+      "datetime": "2026-01-14 23:00:00",
+      "action": "\u4e70\u5165",
+      "signal": "\u653e\u91cf\u786e\u8ba4",
+      "price": 0.095,
+      "position": 1.0,
+      "sigma": 4.023841988426743
+    }
+  ],
+  "summary": {}
+}
