@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-GitHub Actions用 - 抓取ETF期权数据
+GitHub Actions用 - 抓取ETF期权数据（含分钟线历史）
 """
 
 import akshare as ak
 import pandas as pd
 import numpy as np
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 import os
 import time
@@ -20,220 +20,208 @@ ETF_OPTIONS = {
     '588000': {'name': '科创50ETF', 'exchange': '上交所'},
 }
 
-def get_etf_price(symbol):
-    """获取ETF当前价格"""
+def fetch_option_minute_history(symbol='10005245C02700', period='30'):
+    """
+    抓取期权分钟线历史数据
+    
+    参数:
+    - symbol: 期权合约代码（如 10005245C02700 = 510500购2月2700）
+    - period: 分钟周期（1, 5, 15, 30, 60）
+    """
     try:
-        df = ak.fund_etf_hist_em(symbol=symbol, period="daily", adjust="qfq")
-        if not df.empty:
-            return float(df['收盘'].iloc[-1])
-        return None
-    except:
-        return None
-
-def fetch_option_quotes_em(symbol):
-    """使用东财接口获取期权T型报价"""
-    try:
-        # 东财接口获取期权实时行情
-        df = ak.option_current_em()
+        # 使用akshare获取期权分钟数据
+        df = ak.option_commodity_hist_sina(symbol=symbol)
         
-        # 筛选对应ETF的期权
-        # 期权代码格式：10005xxx（510500期权）
-        symbol_prefix = {
-            '510050': '10000',
-            '510300': '10001',
-            '510500': '10005',
-            '159915': '1599',
-            '588000': '5880',
-        }
+        if df is None or df.empty:
+            return None
         
-        prefix = symbol_prefix.get(symbol)
-        if prefix and df is not None and not df.empty:
-            # 筛选对应标的的期权
-            filtered = df[df['合约代码'].astype(str).str.startswith(prefix)]
-            return filtered
-        return None
+        # 标准化列名
+        df.columns = ['date', 'open', 'high', 'low', 'close', 'volume']
+        
+        # 转换数值
+        for col in ['open', 'high', 'low', 'close', 'volume']:
+            df[col] = pd.to_numeric(df[col], errors='coerce')
+        
+        # 计算技术指标
+        if len(df) >= 20:
+            df['ma20'] = df['close'].rolling(window=20).mean()
+            df['std20'] = df['close'].rolling(window=20).std()
+            df['upper'] = df['ma20'] + 2 * df['std20']
+            df['lower'] = df['ma20'] - 2 * df['std20']
+            df['sigma'] = (df['close'] - df['ma20']) / df['std20']
+        
+        return df
     except Exception as e:
-        print(f"  东财接口失败: {e}")
+        print(f"  获取{symbol}分钟数据失败: {e}")
         return None
 
-def fetch_option_chain_sina(symbol, etf_price):
-    """使用新浪接口获取期权链"""
+def fetch_option_daily_history(symbol='10005245C02700'):
+    """抓取期权日线历史数据"""
     try:
-        # 生成可能的期权合约代码
-        # 格式：10005503C06000 = 510500购3月6000
+        df = ak.option_commodity_hist_sina(symbol=symbol)
+        
+        if df is None or df.empty:
+            return None
+        
+        df.columns = ['date', 'open', 'high', 'low', 'close', 'volume']
+        
+        for col in ['open', 'high', 'low', 'close', 'volume']:
+            df[col] = pd.to_numeric(df[col], errors='coerce')
+        
+        # 计算更多指标
+        if len(df) >= 20:
+            df['ma20'] = df['close'].rolling(window=20).mean()
+            df['std20'] = df['close'].rolling(window=20).std()
+            df['upper'] = df['ma20'] + 2 * df['std20']
+            df['lower'] = df['ma20'] - 2 * df['std20']
+            df['sigma'] = (df['close'] - df['ma20']) / df['std20']
+            
+            # MACD
+            df['ema12'] = df['close'].ewm(span=12, adjust=False).mean()
+            df['ema26'] = df['close'].ewm(span=26, adjust=False).mean()
+            df['dif'] = df['ema12'] - df['ema26']
+            df['dea'] = df['dif'].ewm(span=9, adjust=False).mean()
+            df['macd'] = 2 * (df['dif'] - df['dea'])
+        
+        return df
+    except Exception as e:
+        print(f"  获取{symbol}日线数据失败: {e}")
+        return None
+
+def get_active_option_contracts(underlying='510500'):
+    """获取活跃的期权合约代码"""
+    try:
+        # 获取ETF当前价格
+        etf_df = ak.fund_etf_hist_em(symbol=underlying, period="daily", adjust="qfq")
+        if etf_df.empty:
+            return []
+        
+        current_price = float(etf_df['收盘'].iloc[-1])
+        
+        # 生成平值和虚值合约代码
+        # 格式：10005 + 到期月份 + C/P + 行权价
+        # 例如：100052503C06000 = 510500购3月6000
         
         contracts = []
-        expiry = "2503"  # 3月到期
+        expiry_months = ['2503', '2504', '2506']  # 3月、4月、6月到期
         
-        # 生成行权价（围绕ETF价格）
-        if symbol == '510500':
-            step = 0.05
-            base = round(etf_price / step) * step
-            strikes = [round(base + i * step, 2) for i in range(-10, 11)]
-        elif symbol == '510050':
-            step = 0.05
-            base = round(etf_price / step) * step
-            strikes = [round(base + i * step, 2) for i in range(-10, 11)]
-        else:
-            step = 0.05
-            base = round(etf_price / step) * step
-            strikes = [round(base + i * step, 2) for i in range(-8, 9)]
+        for expiry in expiry_months:
+            # 平值附近行权价
+            base_strike = round(current_price / 0.05) * 0.05
+            strikes = [base_strike + i * 0.05 for i in range(-5, 6)]
+            
+            for strike in strikes:
+                strike_str = str(int(strike * 100)).zfill(5)
+                
+                # 认购期权
+                call_code = f"10005{expiry}C{strike_str}" if underlying == '510500' else f"10000{expiry}C{strike_str}"
+                contracts.append({
+                    'code': call_code,
+                    'underlying': underlying,
+                    'type': '认购',
+                    'strike': strike,
+                    'expiry': expiry
+                })
+                
+                # 认沽期权
+                put_code = f"10005{expiry}P{strike_str}" if underlying == '510500' else f"10000{expiry}P{strike_str}"
+                contracts.append({
+                    'code': put_code,
+                    'underlying': underlying,
+                    'type': '认沽',
+                    'strike': strike,
+                    'expiry': expiry
+                })
         
-        for strike in strikes:
-            strike_str = str(int(strike * 100)).zfill(5)
-            
-            # 认购期权
-            try:
-                call_code = f"10005{expiry}C{strike_str}" if symbol == '510500' else f"10000{expiry}C{strike_str}"
-                df_call = ak.option_commodity_hist_sina(symbol=call_code)
-                if not df_call.empty:
-                    latest = df_call.iloc[-1]
-                    contracts.append({
-                        'code': call_code,
-                        'underlying': symbol,
-                        'type': '认购',
-                        'strike': strike,
-                        'close': float(latest['close']),
-                        'volume': int(latest['volume']),
-                        'date': str(latest['date'])
-                    })
-            except:
-                pass
-            
-            # 认沽期权
-            try:
-                put_code = f"10005{expiry}P{strike_str}" if symbol == '510500' else f"10000{expiry}P{strike_str}"
-                df_put = ak.option_commodity_hist_sina(symbol=put_code)
-                if not df_put.empty:
-                    latest = df_put.iloc[-1]
-                    contracts.append({
-                        'code': put_code,
-                        'underlying': symbol,
-                        'type': '认沽',
-                        'strike': strike,
-                        'close': float(latest['close']),
-                        'volume': int(latest['volume']),
-                        'date': str(latest['date'])
-                    })
-            except:
-                pass
-            
-            time.sleep(0.1)
-        
-        return pd.DataFrame(contracts) if contracts else None
+        return contracts
     except Exception as e:
-        print(f"  新浪接口失败: {e}")
-        return None
+        print(f"获取合约列表失败: {e}")
+        return []
 
-def fetch_all_options():
-    """抓取所有ETF期权数据"""
-    print("=" * 80)
+def fetch_all_option_data():
+    """抓取所有期权数据"""
+    print("="*80)
     print(f"ETF期权数据抓取 - {datetime.now().strftime('%Y-%m-%d %H:%M')}")
-    print("=" * 80)
+    print("="*80)
     
-    all_options = []
+    all_data = {
+        'update_time': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'daily': {},
+        'minute': {},
+        'contracts': []
+    }
     
     for symbol, info in ETF_OPTIONS.items():
         print(f"\n抓取 {info['name']} ({symbol}) 期权...")
         
-        # 获取ETF价格
-        etf_price = get_etf_price(symbol)
-        if etf_price:
-            print(f"  ETF价格: {etf_price:.3f}")
+        # 获取活跃合约
+        contracts = get_active_option_contracts(symbol)
+        print(f"  生成 {len(contracts)} 个合约代码")
         
-        # 尝试获取期权数据
-        df = fetch_option_chain_sina(symbol, etf_price)
+        # 只抓取前5个合约（避免请求过多）
+        for contract in contracts[:5]:
+            code = contract['code']
+            print(f"  抓取 {code}...", end=" ")
+            
+            # 抓取日线历史
+            daily_df = fetch_option_daily_history(code)
+            if daily_df is not None and not daily_df.empty:
+                all_data['daily'][code] = {
+                    'underlying': symbol,
+                    'type': contract['type'],
+                    'strike': contract['strike'],
+                    'expiry': contract['expiry'],
+                    'records': len(daily_df),
+                    'latest_price': float(daily_df['close'].iloc[-1]),
+                    'data': daily_df.tail(60).to_dict('records')  # 最近60天
+                }
+                print(f"日线{len(daily_df)}条", end=" ")
+            
+            # 抓取分钟历史（30分钟）
+            minute_df = fetch_option_minute_history(code, period='30')
+            if minute_df is not None and not minute_df.empty:
+                all_data['minute'][code] = {
+                    'underlying': symbol,
+                    'type': contract['type'],
+                    'strike': contract['strike'],
+                    'expiry': contract['expiry'],
+                    'records': len(minute_df),
+                    'latest_price': float(minute_df['close'].iloc[-1]),
+                    'data': minute_df.tail(480).to_dict('records')  # 最近480根（约10天）
+                }
+                print(f"分钟{len(minute_df)}条", end=" ")
+            
+            print("✓")
+            time.sleep(0.5)  # 避免请求过快
         
-        if df is not None and not df.empty:
-            df['underlying_name'] = info['name']
-            df['etf_price'] = etf_price
-            all_options.append(df)
-            print(f"  ✓ 获取到 {len(df)} 个合约")
-        else:
-            print(f"  ✗ 未获取到数据")
+        all_data['contracts'].extend(contracts[:5])
     
-    if all_options:
-        return pd.concat(all_options, ignore_index=True)
-    return None
-
-def analyze_options(df):
-    """分析期权数据"""
-    print("\n" + "=" * 80)
-    print("期权数据分析")
-    print("=" * 80)
-    
-    print(f"\n总合约数: {len(df)}")
-    print(f"标的数量: {df['underlying'].nunique()}")
-    
-    # 按标的统计
-    for symbol in df['underlying'].unique():
-        subset = df[df['underlying'] == symbol]
-        name = subset['underlying_name'].iloc[0]
-        etf_price = subset['etf_price'].iloc[0]
-        
-        calls = subset[subset['type'] == '认购']
-        puts = subset[subset['type'] == '认沽']
-        
-        print(f"\n{name} ({symbol}):")
-        print(f"  ETF价格: {etf_price:.3f}")
-        print(f"  认购期权: {len(calls)}个")
-        print(f"  认沽期权: {len(puts)}个")
-        
-        # 找出平值期权
-        if not calls.empty:
-            atm_call = calls.iloc[(calls['strike'] - etf_price).abs().argsort()[:1]]
-            print(f"  平值认购: 行权价{atm_call['strike'].values[0]:.2f}, 价格{atm_call['close'].values[0]:.4f}")
-        
-        if not puts.empty:
-            atm_put = puts.iloc[(puts['strike'] - etf_price).abs().argsort()[:1]]
-            print(f"  平值认沽: 行权价{atm_put['strike'].values[0]:.2f}, 价格{atm_put['close'].values[0]:.4f}")
-
-def save_options_data(df):
-    """保存期权数据"""
-    if df is None or df.empty:
-        return
-    
+    # 保存数据
     os.makedirs('data/options', exist_ok=True)
     
-    # 保存CSV
-    csv_path = 'data/options/etf_options_latest.csv'
-    df.to_csv(csv_path, index=False, encoding='utf-8-sig')
-    print(f"\n✓ 期权数据: {csv_path}")
-    
     # 保存JSON
-    json_path = 'data/options/etf_options_latest.json'
-    df.to_json(json_path, orient='records', force_ascii=False, indent=2)
-    print(f"✓ JSON格式: {json_path}")
+    json_path = 'data/options/option_history.json'
+    with open(json_path, 'w', encoding='utf-8') as f:
+        json.dump(all_data, f, ensure_ascii=False, indent=2)
+    print(f"\n✓ 数据已保存: {json_path}")
     
-    # 保存元数据
-    meta = {
-        'update_time': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-        'total_contracts': len(df),
-        'underlyings': df['underlying'].unique().tolist(),
-        'date_range': f"{df['date'].min()} 至 {df['date'].max()}" if 'date' in df.columns else 'N/A',
+    # 保存摘要
+    summary = {
+        'update_time': all_data['update_time'],
+        'daily_contracts': len(all_data['daily']),
+        'minute_contracts': len(all_data['minute']),
+        'total_contracts': len(all_data['contracts'])
     }
     
-    meta_path = 'data/options/etf_options_meta.json'
-    with open(meta_path, 'w', encoding='utf-8') as f:
-        json.dump(meta, f, ensure_ascii=False, indent=2)
-    print(f"✓ 元数据: {meta_path}")
+    summary_path = 'data/options/option_summary.json'
+    with open(summary_path, 'w', encoding='utf-8') as f:
+        json.dump(summary, f, ensure_ascii=False, indent=2)
+    print(f"✓ 摘要已保存: {summary_path}")
+    
+    return all_data
 
 def main():
-    # 抓取期权数据
-    df = fetch_all_options()
-    
-    if df is not None and not df.empty:
-        # 分析数据
-        analyze_options(df)
-        
-        # 保存数据
-        save_options_data(df)
-        
-        print("\n" + "=" * 80)
-        print("ETF期权数据抓取完成！")
-        print("=" * 80)
-    else:
-        print("\n未获取到期权数据")
+    fetch_all_option_data()
 
 if __name__ == "__main__":
     main()
