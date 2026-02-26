@@ -158,8 +158,8 @@ def fetch_all_option_data():
         contracts = get_active_option_contracts(symbol)
         print(f"  生成 {len(contracts)} 个合约代码")
         
-        # 只抓取前5个合约（避免请求过多）
-        for contract in contracts[:5]:
+        # 抓取更多合约（用于回测）
+        for contract in contracts[:15]:  # 增加到15个合约
             code = contract['code']
             print(f"  抓取 {code}...", end=" ")
             
@@ -173,7 +173,7 @@ def fetch_all_option_data():
                     'expiry': contract['expiry'],
                     'records': len(daily_df),
                     'latest_price': float(daily_df['close'].iloc[-1]),
-                    'data': daily_df.tail(60).to_dict('records')  # 最近60天
+                    'data': daily_df.to_dict('records')  # 全部历史数据
                 }
                 print(f"日线{len(daily_df)}条", end=" ")
             
@@ -187,7 +187,7 @@ def fetch_all_option_data():
                     'expiry': contract['expiry'],
                     'records': len(minute_df),
                     'latest_price': float(minute_df['close'].iloc[-1]),
-                    'data': minute_df.tail(480).to_dict('records')  # 最近480根（约10天）
+                    'data': minute_df.to_dict('records')  # 全部分钟数据
                 }
                 print(f"分钟{len(minute_df)}条", end=" ")
             
