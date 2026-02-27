@@ -1,48 +1,19 @@
 {
-  "update_time": "2026-02-27 02:11:24",
-  "etf_signals": [
-    {
-      "symbol": "510050",
-      "name": "50ETF",
-      "date": "2026-02-27",
-      "close": 3.111,
-      "ma20": 3.13445,
-      "upper": 3.1897747826832306,
-      "lower": 3.07912521731677,
-      "z_score": -0.8477213596758671,
-      "breakout_up": false,
-      "breakout_down": false,
-      "confirmed_up": false,
-      "confirmed_down": false
-    },
-    {
-      "symbol": "510300",
-      "name": "300ETF",
-      "date": "2026-02-27",
-      "close": 4.715,
-      "ma20": 4.706300000000001,
-      "upper": 4.7821755213282975,
-      "lower": 4.630424478671704,
-      "z_score": 0.22932297130075177,
-      "breakout_up": false,
-      "breakout_down": false,
-      "confirmed_up": false,
-      "confirmed_down": false
-    }
-  ],
+  "update_time": "2026-02-27 11:05:39",
+  "etf_signals": [],
   "futures_signals": [
     {
       "symbol": "RU",
       "name": "橡胶",
-      "date": "2026-02-26",
-      "close": 17125.0,
-      "ma20": 16406.25,
-      "upper": 17137.21097527043,
-      "lower": 15675.289024729567,
-      "z_score": 1.966589255285716,
+      "date": "2026-02-27",
+      "close": 17155.0,
+      "ma20": 16471.5,
+      "upper": 17225.995997687325,
+      "lower": 15717.004002312675,
+      "z_score": 1.81180550220295,
       "breakout_up": false,
       "breakout_down": false,
-      "confirmed_up": true,
+      "confirmed_up": false,
       "confirmed_down": false
     }
   ]
