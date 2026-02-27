@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>虚拟宠物</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .game-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .pet-display {
+            text-align: center;
+            font-size: 100px;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .pet-name {
+            text-align: center;
+            font-size: 24px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .stats {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .stat-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .stat-label {
+            width: 60px;
+            font-size: 14px;
+            color: #666;
+        }
+        .stat-progress {
+            flex: 1;
+            height: 20px;
+            background: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .stat-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s, background-color 0.3s;
+        }
+        .hunger-fill { background: #ff6b6b; }
+        .happy-fill { background: #ffd93d; }
+        .energy-fill { background: #6bcf7f; }
+        .health-fill { background: #4d96ff; }
+        .stat-value {
+            width: 40px;
+            text-align: right;
+            font-size: 14px;
+            color: #333;
+        }
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .btn-feed { background: #ff6b6b; color: white; }
+        .btn-play { background: #ffd93d; color: #333; }
+        .btn-sleep { background: #6bcf7f; color: white; }
+        .btn-heal { background: #4d96ff; color: white; }
+        .message {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+        }
+        .level-info {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .level {
+            font-size: 18px;
+            color: #667eea;
+            font-weight: bold;
+        }
+        .exp-bar {
+            width: 100%;
+            height: 10px;
+            background: #eee;
+            border-radius: 5px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        .exp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 5px;
+            transition: width 0.3s;
+        }
+        .pet-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .pet-option {
+            font-size: 40px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            opacity: 0.5;
+        }
+        .pet-option:hover, .pet-option.selected {
+            opacity: 1;
+            background: #f0f0f0;
+            transform: scale(1.1);
+        }
+        .start-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>🎮 虚拟宠物</h1>
+        
+        <!-- 宠物选择界面 -->
+        <div id="petSelect">
+            <p style="text-align: center; margin-bottom: 15px; color: #666;">选择你的宠物：</p>
+            <div class="pet-selector">
+                <span class="pet-option selected" data-pet="🐱" data-name="小猫">🐱</span>
+                <span class="pet-option" data-pet="🐶" data-name="小狗">🐶</span>
+                <span class="pet-option" data-pet="🐰" data-name="小兔">🐰</span>
+                <span class="pet-option" data-pet="🐼" data-name="熊猫">🐼</span>
+            </div>
+            <button class="start-btn" onclick="startGame()">开始游戏</button>
+        </div>
+
+        <!-- 游戏主界面 -->
+        <div id="gameMain" class="hidden">
+            <div class="pet-display" id="petEmoji">🐱</div>
+            <div class="pet-name" id="petName">小猫</div>
+            
+            <div class="level-info">
+                <div class="level">等级 <span id="level">1</span></div>
+                <div class="exp-bar">
+                    <div class="exp-fill" id="expFill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="message" id="message">你的宠物很开心！</div>
+
+            <div class="stats">
+                <div class="stat-bar">
+                    <span class="stat-label">🍖 饱食</span>
+                    <div class="stat-progress">
+                        <div class="stat-fill hunger-fill" id="hunger" style="width: 80%"></div>
+                    </div>
+                    <span class="stat-value" id="hungerVal">80</span>
+                </div>
+                <div class="stat-bar">
+                    <span class="stat-label">😊 心情</span>
+                    <div class="stat-progress">
+                        <div class="stat-fill happy-fill" id="happy" style="width: 80%"></div>
+                    </div>
+                    <span class="stat-value" id="happyVal">80</span>
+                </div>
+                <div class="stat-bar">
+                    <span class="stat-label">⚡ 精力</span>
+                    <div class="stat-progress">
+                        <div class="stat-fill energy-fill" id="energy" style="width: 80%"></div>
+                    </div>
+                    <span class="stat-value" id="energyVal">80</span>
+                </div>
+                <div class="stat-bar">
+                    <span class="stat-label">❤️ 健康</span>
+                    <div class="stat-progress">
+                        <div class="stat-fill health-fill" id="health" style="width: 100%"></div>
+                    </div>
+                    <span class="stat-value" id="healthVal">100</span>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-feed" onclick="feed()">🍖 喂食</button>
+                <button class="btn btn-play" onclick="play()">🎾 玩耍</button>
+                <button class="btn btn-sleep" onclick="sleep()">😴 睡觉</button>
+                <button class="btn btn-heal" onclick="heal()">💊 治疗</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 游戏状态
+        let pet = {
+            emoji: '🐱',
+            name: '小猫',
+            hunger: 80,
+            happy: 80,
+            energy: 80,
+            health: 100,
+            level: 1,
+            exp: 0,
+            maxExp: 100
+        };
+
+        let gameInterval;
+        let selectedPet = { emoji: '🐱', name: '小猫' };
+
+        // 宠物选择
+        document.querySelectorAll('.pet-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.pet-option').forEach(p => p.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedPet = {
+                    emoji: this.dataset.pet,
+                    name: this.dataset.name
+                };
+            });
+        });
+
+        // 开始游戏
+        function startGame() {
+            pet.emoji = selectedPet.emoji;
+            pet.name = selectedPet.name;
+            
+            document.getElementById('petSelect').classList.add('hidden');
+            document.getElementById('gameMain').classList.remove('hidden');
+            
+            document.getElementById('petEmoji').textContent = pet.emoji;
+            document.getElementById('petName').textContent = pet.name;
+            
+            updateDisplay();
+            startGameLoop();
+        }
+
+        // 更新显示
+        function updateDisplay() {
+            document.getElementById('hunger').style.width = pet.hunger + '%';
+            document.getElementById('hungerVal').textContent = Math.floor(pet.hunger);
+            
+            document.getElementById('happy').style.width = pet.happy + '%';
+            document.getElementById('happyVal').textContent = Math.floor(pet.happy);
+            
+            document.getElementById('energy').style.width = pet.energy + '%';
+            document.getElementById('energyVal').textContent = Math.floor(pet.energy);
+            
+            document.getElementById('health').style.width = pet.health + '%';
+            document.getElementById('healthVal').textContent = Math.floor(pet.health);
+            
+            document.getElementById('level').textContent = pet.level;
+            document.getElementById('expFill').style.width = (pet.exp / pet.maxExp * 100) + '%';
+        }
+
+        // 显示消息
+        function showMessage(msg) {
+            document.getElementById('message').textContent = msg;
+        }
+
+        // 增加经验
+        function addExp(amount) {
+            pet.exp += amount;
+            if (pet.exp >= pet.maxExp) {
+                pet.exp -= pet.maxExp;
+                pet.level++;
+                pet.maxExp = Math.floor(pet.maxExp * 1.2);
+                showMessage(`🎉 升级了！现在等级 ${pet.level}`);
+            }
+        }
+
+        // 喂食
+        function feed() {
+            if (pet.hunger >= 100) {
+                showMessage('宠物已经吃饱了！');
+                return;
+            }
+            pet.hunger = Math.min(100, pet.hunger + 20);
+            pet.energy = Math.min(100, pet.energy + 5);
+            addExp(10);
+            showMessage('🍖 宠物吃得很开心！');
+            updateDisplay();
+        }
+
+        // 玩耍
+        function play() {
+            if (pet.energy < 20) {
+                showMessage('宠物太累了，需要休息！');
+                return;
+            }
+            pet.happy = Math.min(100, pet.happy + 15);
+            pet.energy -= 15;
+            pet.hunger -= 10;
+            addExp(15);
+            showMessage('🎾 玩得很开心！');
+            updateDisplay();
+        }
+
+        // 睡觉
+        function sleep() {
+            pet.energy = Math.min(100, pet.energy + 30);
+            pet.health = Math.min(100, pet.health + 10);
+            pet.hunger -= 5;
+            addExp(5);
+            showMessage('😴 睡了个好觉，精力充沛！');
+            updateDisplay();
+        }
+
+        // 治疗
+        function heal() {
+            if (pet.health >= 100) {
+                showMessage('宠物很健康，不需要治疗！');
+                return;
+            }
+            pet.health = Math.min(100, pet.health + 25);
+            pet.happy = Math.max(0, pet.happy - 5);
+            addExp(8);
+            showMessage('💊 治疗完成，感觉好多了！');
+            updateDisplay();
+        }
+
+        // 游戏循环
+        function startGameLoop() {
+            gameInterval = setInterval(() => {
+                // 自然衰减
+                pet.hunger = Math.max(0, pet.hunger - 2);
+                pet.happy = Math.max(0, pet.happy - 1);
+                pet.energy = Math.max(0, pet.energy - 1);
+                
+                // 健康影响
+                if (pet.hunger < 20 || pet.energy < 10) {
+                    pet.health = Math.max(0, pet.health - 2);
+                }
+                
+                // 状态提示
+                if (pet.hunger < 30 && pet.hunger > 28) {
+                    showMessage('🍖 宠物饿了，快喂食吧！');
+                } else if (pet.happy < 30 && pet.happy > 28) {
+                    showMessage('😢 宠物不开心了，陪它玩玩吧！');
+                } else if (pet.energy < 20 && pet.energy > 18) {
+                    showMessage('😴 宠物很累了，让它休息吧！');
+                } else if (pet.health < 50 && pet.health > 48) {
+                    showMessage('💊 宠物生病了，需要治疗！');
+                }
+                
+                updateDisplay();
+            }, 3000); // 每3秒更新一次
+        }
+    </script>
+</body>
+</html>
