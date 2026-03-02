@@ -1,5 +1,5 @@
 {
-  "update_time": "2026-03-02 17:59:53",
+  "update_time": "2026-03-02 22:57:22",
   "etf_signals": [
     {
       "symbol": "510050",
@@ -52,20 +52,6 @@
       "upper": 3.361581413070578,
       "lower": 3.232618586929421,
       "z_score": -0.4683520190065213,
-      "breakout_up": false,
-      "breakout_down": false,
-      "confirmed_up": false,
-      "confirmed_down": false
-    },
-    {
-      "symbol": "588000",
-      "name": "科创50ETF",
-      "date": "2026-03-02",
-      "close": 1.544,
-      "ma20": 1.55875,
-      "upper": 1.6346137976209563,
-      "lower": 1.482886202379044,
-      "z_score": -0.38885477559920095,
       "breakout_up": false,
       "breakout_down": false,
       "confirmed_up": false,
