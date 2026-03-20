@@ -1,5 +1,5 @@
 {
-  "update_time": "2026-03-20 15:08:34",
+  "update_time": "2026-03-20 17:26:45",
   "etf_signals": [
     {
       "symbol": "510050",
@@ -26,6 +26,48 @@
       "z_score": -2.0901944300437636,
       "breakout_up": false,
       "breakout_down": true,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "510500",
+      "name": "500ETF",
+      "date": "2026-03-20",
+      "close": 7.812,
+      "ma20": 8.366,
+      "upper": 8.839934483591188,
+      "lower": 7.8920655164088105,
+      "z_score": -2.3378758844561056,
+      "breakout_up": false,
+      "breakout_down": true,
+      "confirmed_up": false,
+      "confirmed_down": true
+    },
+    {
+      "symbol": "159915",
+      "name": "创业板ETF",
+      "date": "2026-03-20",
+      "close": 3.341,
+      "ma20": 3.28285,
+      "upper": 3.396262660576089,
+      "lower": 3.1694373394239106,
+      "z_score": 1.0254587046035675,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "588000",
+      "name": "科创50ETF",
+      "date": "2026-03-20",
+      "close": 1.388,
+      "ma20": 1.4843,
+      "upper": 1.5892814018616712,
+      "lower": 1.3793185981383287,
+      "z_score": -1.8346106699335127,
+      "breakout_up": false,
+      "breakout_down": false,
       "confirmed_up": false,
       "confirmed_down": false
     }
