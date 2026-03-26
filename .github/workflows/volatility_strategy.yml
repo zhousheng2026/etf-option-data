@@ -1,0 +1,87 @@
+name: Volatility Breakthrough Strategy
+
+on:
+  # 定时触发：交易日每小时运行
+  # 日盘：9:00-15:00（北京时间）→ UTC: 1:00-7:00
+  # 夜盘：21:00-01:00（北京时间）→ UTC: 13:00-17:00
+  schedule:
+    # 日盘：9点, 10点, 11点, 13点, 14点, 15点（北京时间）
+    - cron: '0 1,2,3,5,6,7 * * 1-5'  # UTC时间，周一到周五
+    # 夜盘：21点, 22点, 23点, 00点, 01点（北京时间）
+    - cron: '0 13,14,15,16,17 * * 0-4'  # UTC时间，周日到周四
+  
+  # 手动触发
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: '运行模式'
+        required: true
+        default: 'test'
+        type: choice
+        options:
+          - test
+          - production
+
+jobs:
+  run-strategy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+    
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install numpy pandas
+        # 尝试安装reportlab（用于PDF生成）
+        pip install reportlab || echo "reportlab安装失败，将使用Markdown报告"
+    
+    - name: Run volatility strategy
+      run: |
+        echo "开始运行波动率突破策略..."
+        python strategies/volatility_breakthrough.py
+      env:
+        PYTHONPATH: ${{ github.workspace }}
+    
+    - name: Upload reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: strategy-reports-${{ github.run_number }}
+        path: |
+          reports/
+          logs/
+        retention-days: 30
+    
+    - name: Commit reports to repository
+      if: success()
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add reports/ logs/ 2>/dev/null || echo "没有新报告文件"
+        git diff --quiet && git diff --staged --quiet || git commit -m "更新策略报告 - $(date '+%Y-%m-%d %H:%M')"
+        git push 2>/dev/null || echo "推送失败或无新提交"
+    
+    - name: Summary
+      if: always()
+      run: |
+        echo "## 策略执行完成" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**执行时间**: $(date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_STEP_SUMMARY
+        echo "**运行模式**: ${{ github.event.inputs.mode || '定时运行' }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 报告文件" >> $GITHUB_STEP_SUMMARY
+        if [ -d "reports" ]; then
+          ls -lh reports/ | tail -n +2 | awk '{print "- " $9 " (" $5 ")"}' >> $GITHUB_STEP_SUMMARY
+        else
+          echo "无报告文件生成" >> $GITHUB_STEP_SUMMARY
+        fi
