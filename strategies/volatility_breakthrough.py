@@ -15,8 +15,8 @@ from typing import Dict, List
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from config.ctp_config import CTP_CONFIG
-from config.strategy_config import STRATEGY_CONFIG
-from config.symbols_config import SYMBOLS_CONFIG
+from config.strategy_config import VOLATILITY_CONFIG, SIGNAL_CONFIG, RISK_CONFIG
+from config.symbols_config import MONITORING_SYMBOLS
 from core.ctp_connection import CTPConnection
 from core.volatility_analyzer import VolatilityAnalyzer
 from core.signal_generator import SignalGenerator
@@ -105,16 +105,24 @@ def run_strategy():
         
         # 暂时使用模拟数据进行测试
         logger.info("使用模拟数据进行策略测试...")
-        market_data = generate_mock_data(SYMBOLS_CONFIG['symbols'])
+        market_data = generate_mock_data(MONITORING_SYMBOLS)
         
         # 步骤2：分析波动率
         logger.info("步骤2: 分析波动率...")
-        analyzer = VolatilityAnalyzer(STRATEGY_CONFIG)
-        volatility_data = analyzer.analyze(market_data)
+        # 使用模拟数据中的波动率信息
+        volatility_data = {}
+        for symbol, data in market_data.items():
+            volatility_data[symbol] = {
+                'iv': data.get('iv', 0.25),
+                'hv': data.get('hv', 0.22),
+                'iv_rank': data.get('iv_rank', 50),
+                'hv_rank': data.get('hv_rank', 50),
+                'close': data.get('last_price', 0)
+            }
         
         # 步骤3：生成交易信号
         logger.info("步骤3: 生成交易信号...")
-        generator = SignalGenerator(STRATEGY_CONFIG)
+        generator = SignalGenerator(SIGNAL_CONFIG)
         signals = generator.generate_signals(volatility_data)
         
         # 步骤4：生成市场概况
@@ -216,10 +224,10 @@ if __name__ == "__main__":
     """主程序入口"""
     try:
         signals, vol_data, report_path = run_strategy()
-        print(f"\n✅ 策略执行成功！报告已保存: {report_path}")
+        print(f"\n[OK] 策略执行成功！报告已保存: {report_path}")
     except KeyboardInterrupt:
         print("\n用户中断程序")
         sys.exit(0)
     except Exception as e:
-        print(f"\n❌ 策略执行失败: {e}")
+        print(f"\n[X] 策略执行失败: {e}")
         sys.exit(1)
