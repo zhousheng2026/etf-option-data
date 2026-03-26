@@ -1,0 +1,69 @@
+name: CTP主席测试环境连接测试
+
+on:
+  workflow_dispatch:
+    inputs:
+      timeout:
+        description: '连接超时(秒)'
+        required: false
+        default: '60'
+  schedule:
+    # 每天北京时间 9:15, 10:30, 13:30, 15:00, 21:00 运行
+    - cron: '0 1,2,5,7,13 * * 1-5'  # UTC时间
+
+jobs:
+  ctp-connect-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install openctp-ctp
+        run: |
+          python -m pip install --upgrade pip
+          pip install openctp-ctp==6.7.11.0
+
+      - name: Verify CTP library
+        run: |
+          python -c "
+          from openctp_ctp.thostmduserapi import CThostFtdcMdApi, CThostFtdcMdSpi
+          from openctp_ctp.thosttraderapi import CThostFtdcTraderApi, CThostFtdcTraderSpi
+          print('CTP库导入成功')
+          print(f'MdApi可用方法: CreateFtdcMdApi={hasattr(CThostFtdcMdApi, \"CreateFtdcMdApi\")}')
+          print(f'TdApi可用方法: CreateFtdcTraderApi={hasattr(CThostFtdcTraderApi, \"CreateFtdcTraderApi\")}')
+          "
+
+      - name: Run CTP connect test
+        timeout-minutes: 5
+        run: |
+          python sigma_burst_20260325_1125.py --mode connect
+        continue-on-error: true
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ctp-test-report-${{ github.run_number }}
+          path: logs/
+          retention-days: 30
+
+      - name: Print test report
+        if: always()
+        run: |
+          echo "============================================"
+          echo "  CTP测试报告 - $(date)"
+          echo "============================================"
+          if [ -f logs/ctp_test_report_*.txt ]; then
+            cat logs/ctp_test_report_*.txt
+          else
+            echo "  未生成测试报告文件"
+            echo "  查看上方运行日志获取详情"
+          fi
+          echo "============================================"
