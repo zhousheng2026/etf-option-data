@@ -1,0 +1,97 @@
+name: CTP Trading Test
+
+on:
+  # 手动触发
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: '测试模式'
+        required: true
+        default: 'check'
+        type: choice
+        options:
+          - check        # 仅检查服务器状态
+          - connect      # 测试连接和查询
+          - trading      # 完整交易测试（谨慎）
+
+jobs:
+  ctp-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+    
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install openctp-ctp numpy pandas
+        pip install reportlab || echo "reportlab安装失败，将使用Markdown报告"
+    
+    - name: Check CTP server status
+      if: github.event.inputs.mode == 'check'
+      run: |
+        echo "=========================================="
+        echo "检查CTP服务器状态"
+        echo "=========================================="
+        python check_ctp_status.py
+    
+    - name: Test CTP connection and query
+      if: github.event.inputs.mode == 'connect'
+      run: |
+        echo "=========================================="
+        echo "测试CTP连接和查询功能"
+        echo "=========================================="
+        # 设置非交互模式，跳过下单测试
+        echo "n" | python test_ctp_trading_simple.py
+    
+    - name: Test CTP trading (with caution)
+      if: github.event.inputs.mode == 'trading'
+      run: |
+        echo "=========================================="
+        echo "⚠️  完整CTP交易测试（包括下单）"
+        echo "=========================================="
+        echo "警告：此操作将使用真实测试账号下单！"
+        # 需要手动确认才会下单
+        python test_ctp_trading_simple.py
+    
+    - name: Generate test report
+      if: always()
+      run: |
+        echo "生成测试报告..."
+        python scripts/generate_ctp_test_report.py
+    
+    - name: Upload test reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: ctp-test-reports-${{ github.run_number }}
+        path: |
+          reports/
+          logs/
+          *.md
+          *.pdf
+        retention-days: 30
+    
+    - name: Summary
+      if: always()
+      run: |
+        echo "## CTP交易测试完成" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**测试时间**: $(date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_STEP_SUMMARY
+        echo "**测试模式**: ${{ github.event.inputs.mode }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 测试报告" >> $GITHUB_STEP_SUMMARY
+        if [ -f "CTP_TRADING_TEST_REPORT.md" ]; then
+          cat CTP_TRADING_TEST_REPORT.md >> $GITHUB_STEP_SUMMARY
+        else
+          echo "测试报告生成中..." >> $GITHUB_STEP_SUMMARY
+        fi
