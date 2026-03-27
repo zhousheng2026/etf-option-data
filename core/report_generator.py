@@ -59,19 +59,46 @@ class ReportGenerator:
         date_str = timestamp.strftime("%Y-%m-%d")
         time_str = timestamp.strftime("%H-%M")
         
-        if self.has_reportlab:
-            # 生成PDF报告
-            filename = f"volatility_strategy_report_{date_str}_{time_str}.pdf"
-            filepath = os.path.join(self.output_dir, filename)
-            self._generate_pdf_report(filepath, signals, volatility_data, market_summary)
-        else:
-            # 生成Markdown报告
-            filename = f"volatility_strategy_report_{date_str}_{time_str}.md"
-            filepath = os.path.join(self.output_dir, filename)
-            self._generate_markdown_report(filepath, signals, volatility_data, market_summary)
+        # 优先使用Markdown格式，确保中文正常显示
+        filename = f"volatility_strategy_report_{date_str}_{time_str}.md"
+        filepath = os.path.join(self.output_dir, filename)
+        self._generate_markdown_report(filepath, signals, volatility_data, market_summary)
+        
+        # 如果环境支持中文字体，同时生成PDF
+        if self.has_reportlab and self._check_chinese_font():
+            try:
+                pdf_filename = f"volatility_strategy_report_{date_str}_{time_str}.pdf"
+                pdf_filepath = os.path.join(self.output_dir, pdf_filename)
+                self._generate_pdf_report(pdf_filepath, signals, volatility_data, market_summary)
+                logger.info(f"PDF报告生成完成: {pdf_filepath}")
+            except Exception as e:
+                logger.warning(f"PDF生成失败，仅保留Markdown: {e}")
         
         logger.info(f"报告生成完成: {filepath}")
         return filepath
+    
+    def _check_chinese_font(self) -> bool:
+        """检查是否支持中文字体"""
+        try:
+            from reportlab.pdfbase import pdfmetrics
+            from reportlab.pdfbase.ttfonts import TTFont
+            
+            # 尝试注册中文字体
+            font_paths = [
+                'simhei.ttf',
+                '/usr/share/fonts/truetype/wqy/wqy-microhei.ttc',
+                '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc',
+            ]
+            
+            for font_path in font_paths:
+                try:
+                    pdfmetrics.registerFont(TTFont('ChineseFont', font_path))
+                    return True
+                except:
+                    continue
+            return False
+        except:
+            return False
     
     def _generate_pdf_report(self, filepath: str, signals: List, 
                             volatility_data: Dict, market_summary: Dict):
