@@ -1,0 +1,12 @@
+# 核心依赖
+numpy>=1.24.0
+pandas>=2.0.0
+
+# PDF报告生成
+reportlab>=4.0.0
+
+# CTP接口（可选，如果不可用会使用模拟数据）
+openctp-ctp>=6.7.11
+
+# 数据可视化（可选）
+matplotlib>=3.7.0
