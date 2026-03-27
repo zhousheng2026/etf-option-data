@@ -90,12 +90,37 @@ class ReportGenerator:
                                topMargin=2*cm, bottomMargin=2*cm)
         
         # 注册中文字体
-        try:
-            pdfmetrics.registerFont(TTFont('SimHei', 'simhei.ttf'))
-            font_name = 'SimHei'
-        except:
-            logger.warning("中文字体注册失败，使用默认字体")
-            font_name = 'Helvetica'
+        font_name = 'Helvetica'
+        chinese_font_registered = False
+        
+        # 尝试多种中文字体方案
+        font_paths = [
+            'simhei.ttf',  # Windows
+            '/usr/share/fonts/truetype/wqy/wqy-microhei.ttc',  # Linux
+            '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',  # Linux fallback
+            'NotoSansCJK',  # Google Noto fonts
+        ]
+        
+        for font_path in font_paths:
+            try:
+                if font_path.endswith('.ttf') or font_path.endswith('.ttc'):
+                    pdfmetrics.registerFont(TTFont('ChineseFont', font_path))
+                else:
+                    # 尝试注册系统字体
+                    from reportlab.pdfbase.cidfonts import UnicodeCIDFont
+                    pdfmetrics.registerFont(UnicodeCIDFont(font_path))
+                font_name = 'ChineseFont'
+                chinese_font_registered = True
+                logger.info(f"成功注册中文字体: {font_path}")
+                break
+            except Exception as e:
+                continue
+        
+        if not chinese_font_registered:
+            logger.warning("中文字体注册失败，将使用英文报告")
+            # 使用Markdown格式代替
+            self._generate_markdown_report(filepath.replace('.pdf', '.md'), signals, volatility_data, market_summary)
+            return
         
         # 创建样式
         styles = getSampleStyleSheet()

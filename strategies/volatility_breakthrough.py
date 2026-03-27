@@ -197,8 +197,28 @@ def generate_mock_data(symbols: List[str]) -> Dict:
     
     mock_data = {}
     
-    for symbol in symbols:
+    # 设置固定的随机种子以确保生成信号
+    random.seed(42)
+    
+    for i, symbol in enumerate(symbols):
         base_price = price_map.get(symbol, 1000)
+        
+        # 为部分品种设置产生信号的波动率数据
+        if i < 3:  # 前3个品种：低IV，适合做多波动率
+            iv = random.uniform(0.15, 0.22)  # 低IV
+            iv_rank = random.uniform(10, 25)  # IV百分位低
+            hv = random.uniform(0.20, 0.26)   # 相对稳定的HV
+            hv_rank = random.uniform(40, 55)
+        elif i < 6:  # 中间3个品种：高IV，适合做空波动率
+            iv = random.uniform(0.38, 0.48)  # 高IV
+            iv_rank = random.uniform(75, 90)  # IV百分位高
+            hv = random.uniform(0.25, 0.32)   # HV相对较低
+            hv_rank = random.uniform(45, 60)
+        else:  # 其余品种：中性
+            iv = random.uniform(0.25, 0.35)
+            iv_rank = random.uniform(40, 60)
+            hv = random.uniform(0.22, 0.32)
+            hv_rank = random.uniform(35, 65)
         
         # 模拟行情数据
         mock_data[symbol] = {
@@ -210,11 +230,11 @@ def generate_mock_data(symbols: List[str]) -> Dict:
             'volume': random.randint(10000, 100000),
             'open_interest': random.randint(50000, 200000),
             'datetime': datetime.now().strftime('%Y%m%d %H:%M:%S'),
-            # 模拟波动率数据
-            'iv': random.uniform(0.15, 0.45),  # 隐含波动率
-            'hv': random.uniform(0.12, 0.40),  # 历史波动率
-            'iv_rank': random.uniform(10, 90),  # IV百分位
-            'hv_rank': random.uniform(15, 85)   # HV百分位
+            # 波动率数据
+            'iv': iv,
+            'hv': hv,
+            'iv_rank': iv_rank,
+            'hv_rank': hv_rank
         }
     
     return mock_data
