@@ -1,5 +1,5 @@
 {
-  "update_time": "2026-03-30 12:04:54",
+  "update_time": "2026-03-30 14:09:32",
   "etf_signals": [
     {
       "symbol": "510050",
@@ -10,20 +10,6 @@
       "upper": 3.1437285594229736,
       "lower": 2.854971440577027,
       "z_score": -1.3069807646936182,
-      "breakout_up": false,
-      "breakout_down": false,
-      "confirmed_up": false,
-      "confirmed_down": false
-    },
-    {
-      "symbol": "510300",
-      "name": "300ETF",
-      "date": "2026-03-30",
-      "close": 4.5,
-      "ma20": 4.6057500000000005,
-      "upper": 4.776424050690048,
-      "lower": 4.435075949309953,
-      "z_score": -1.2392041973861372,
       "breakout_up": false,
       "breakout_down": false,
       "confirmed_up": false,
