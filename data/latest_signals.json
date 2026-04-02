@@ -1,63 +1,6 @@
 {
-  "update_time": "2026-04-02 11:51:12",
-  "etf_signals": [
-    {
-      "symbol": "510050",
-      "name": "50ETF",
-      "date": "2026-04-02",
-      "close": 2.926,
-      "ma20": 2.9776499999999997,
-      "upper": 3.1155596195263144,
-      "lower": 2.839740380473685,
-      "z_score": -0.7490412949786173,
-      "breakout_up": false,
-      "breakout_down": false,
-      "confirmed_up": false,
-      "confirmed_down": false
-    },
-    {
-      "symbol": "510300",
-      "name": "300ETF",
-      "date": "2026-04-02",
-      "close": 4.489,
-      "ma20": 4.582949999999999,
-      "upper": 4.7662294530075275,
-      "lower": 4.399670546992471,
-      "z_score": -1.0252103927453413,
-      "breakout_up": false,
-      "breakout_down": false,
-      "confirmed_up": false,
-      "confirmed_down": false
-    },
-    {
-      "symbol": "510500",
-      "name": "500ETF",
-      "date": "2026-04-02",
-      "close": 7.672,
-      "ma20": 8.0094,
-      "upper": 8.652201893030986,
-      "lower": 7.366598106969013,
-      "z_score": -1.049779111287512,
-      "breakout_up": false,
-      "breakout_down": false,
-      "confirmed_up": false,
-      "confirmed_down": false
-    },
-    {
-      "symbol": "159915",
-      "name": "创业板ETF",
-      "date": "2026-04-02",
-      "close": 3.164,
-      "ma20": 3.2719499999999995,
-      "upper": 3.380741398653811,
-      "lower": 3.163158601346188,
-      "z_score": -1.9845318901269104,
-      "breakout_up": false,
-      "breakout_down": false,
-      "confirmed_up": false,
-      "confirmed_down": false
-    }
-  ],
+  "update_time": "2026-04-02 13:06:26",
+  "etf_signals": [],
   "futures_signals": [
     {
       "symbol": "RU",
