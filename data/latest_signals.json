@@ -1,5 +1,5 @@
 {
-  "update_time": "2026-04-10 10:06:08",
+  "update_time": "2026-04-10 11:25:35",
   "etf_signals": [
     {
       "symbol": "510050",
@@ -39,6 +39,20 @@
       "lower": 7.414935107862173,
       "z_score": 0.7575911003978574,
       "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "159915",
+      "name": "创业板ETF",
+      "date": "2026-04-10",
+      "close": 3.437,
+      "ma20": 3.2734,
+      "upper": 3.425403324063376,
+      "lower": 3.1213966759366243,
+      "z_score": 2.1525845044255574,
+      "breakout_up": true,
       "breakout_down": false,
       "confirmed_up": false,
       "confirmed_down": false
