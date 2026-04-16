@@ -1,6 +1,77 @@
 {
-  "update_time": "2026-04-16 16:54:05",
-  "etf_signals": [],
+  "update_time": "2026-04-16 22:37:30",
+  "etf_signals": [
+    {
+      "symbol": "510050",
+      "name": "50ETF",
+      "date": "2026-04-16",
+      "close": 3.014,
+      "ma20": 2.9418999999999995,
+      "upper": 3.0289472346064614,
+      "lower": 2.8548527653935376,
+      "z_score": 1.656571867583443,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "510300",
+      "name": "300ETF",
+      "date": "2026-04-16",
+      "close": 4.746,
+      "ma20": 4.5565,
+      "upper": 4.745038422720958,
+      "lower": 4.367961577279042,
+      "z_score": 2.010200332273549,
+      "breakout_up": true,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "510500",
+      "name": "500ETF",
+      "date": "2026-04-16",
+      "close": 8.253,
+      "ma20": 7.851999999999999,
+      "upper": 8.261657623413805,
+      "lower": 7.442342376586193,
+      "z_score": 1.9577323944729321,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "159915",
+      "name": "创业板ETF",
+      "date": "2026-04-16",
+      "close": 3.624,
+      "ma20": 3.3180500000000004,
+      "upper": 3.5906711753755713,
+      "lower": 3.0454288246244294,
+      "z_score": 2.2445064993833572,
+      "breakout_up": true,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "588000",
+      "name": "科创50ETF",
+      "date": "2026-04-16",
+      "close": 1.498,
+      "ma20": 1.39155,
+      "upper": 1.5021302399784133,
+      "lower": 1.2809697600215868,
+      "z_score": 1.9252987698485808,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    }
+  ],
   "futures_signals": [
     {
       "symbol": "RU",
