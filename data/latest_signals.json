@@ -1,35 +1,6 @@
 {
-  "update_time": "2026-04-28 13:10:25",
-  "etf_signals": [
-    {
-      "symbol": "510050",
-      "name": "50ETF",
-      "date": "2026-04-28",
-      "close": 3.024,
-      "ma20": 2.97675,
-      "upper": 3.0589048601887447,
-      "lower": 2.8945951398112553,
-      "z_score": 1.1502667009948413,
-      "breakout_up": false,
-      "breakout_down": false,
-      "confirmed_up": false,
-      "confirmed_down": false
-    },
-    {
-      "symbol": "510300",
-      "name": "300ETF",
-      "date": "2026-04-28",
-      "close": 4.77,
-      "ma20": 4.6616,
-      "upper": 4.917120438980611,
-      "lower": 4.406079561019389,
-      "z_score": 0.8484644158600967,
-      "breakout_up": false,
-      "breakout_down": false,
-      "confirmed_up": false,
-      "confirmed_down": false
-    }
-  ],
+  "update_time": "2026-04-28 15:43:22",
+  "etf_signals": [],
   "futures_signals": [
     {
       "symbol": "RU",
