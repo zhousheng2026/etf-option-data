@@ -1,5 +1,5 @@
 {
-  "update_time": "2026-04-30 14:31:33",
+  "update_time": "2026-04-30 16:16:57",
   "etf_signals": [
     {
       "symbol": "510050",
@@ -24,20 +24,6 @@
       "upper": 4.939032328694122,
       "lower": 4.448967671305878,
       "z_score": 1.061084475610409,
-      "breakout_up": false,
-      "breakout_down": false,
-      "confirmed_up": false,
-      "confirmed_down": false
-    },
-    {
-      "symbol": "510500",
-      "name": "500ETF",
-      "date": "2026-04-30",
-      "close": 8.43,
-      "ma20": 8.155100000000001,
-      "upper": 8.692522268553176,
-      "lower": 7.6176777314468245,
-      "z_score": 1.0230316683380916,
       "breakout_up": false,
       "breakout_down": false,
       "confirmed_up": false,
