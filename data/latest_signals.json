@@ -1,5 +1,5 @@
 {
-  "update_time": "2026-05-13 16:16:12",
+  "update_time": "2026-05-13 23:03:27",
   "etf_signals": [
     {
       "symbol": "510050",
@@ -38,6 +38,34 @@
       "upper": 9.01378522633437,
       "lower": 7.901614773665628,
       "z_score": 1.9827895937250006,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "159915",
+      "name": "创业板ETF",
+      "date": "2026-05-13",
+      "close": 4.048,
+      "ma20": 3.71725,
+      "upper": 4.011107735002926,
+      "lower": 3.423392264997074,
+      "z_score": 2.2510892898341197,
+      "breakout_up": true,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "588000",
+      "name": "科创50ETF",
+      "date": "2026-05-13",
+      "close": 1.865,
+      "ma20": 1.60625,
+      "upper": 1.8721260098835164,
+      "lower": 1.3403739901164835,
+      "z_score": 1.9463959919765723,
       "breakout_up": false,
       "breakout_down": false,
       "confirmed_up": false,
