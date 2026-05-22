@@ -1,21 +1,6 @@
 {
-  "update_time": "2026-05-22 17:06:46",
-  "etf_signals": [
-    {
-      "symbol": "510050",
-      "name": "50ETF",
-      "date": "2026-05-22",
-      "close": 2.995,
-      "ma20": 3.0480500000000004,
-      "upper": 3.1372180258955247,
-      "lower": 2.958881974104476,
-      "z_score": -1.1898884037683526,
-      "breakout_up": false,
-      "breakout_down": false,
-      "confirmed_up": false,
-      "confirmed_down": false
-    }
-  ],
+  "update_time": "2026-05-22 22:55:56",
+  "etf_signals": [],
   "futures_signals": [
     {
       "symbol": "RU",
