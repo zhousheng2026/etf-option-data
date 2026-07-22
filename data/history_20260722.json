@@ -1,6 +1,77 @@
 {
-  "update_time": "2026-07-22 12:56:04",
-  "etf_signals": [],
+  "update_time": "2026-07-22 15:02:21",
+  "etf_signals": [
+    {
+      "symbol": "510050",
+      "name": "50ETF",
+      "date": "2026-07-22",
+      "close": 3.086,
+      "ma20": 3.0389,
+      "upper": 3.1216981693161485,
+      "lower": 2.9561018306838514,
+      "z_score": 1.1377063137750725,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "510300",
+      "name": "300ETF",
+      "date": "2026-07-22",
+      "close": 4.765,
+      "ma20": 4.8433,
+      "upper": 5.074387224361622,
+      "lower": 4.612212775638378,
+      "z_score": -0.6776661947998556,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "510500",
+      "name": "500ETF",
+      "date": "2026-07-22",
+      "close": 7.74,
+      "ma20": 8.387649999999999,
+      "upper": 9.377702263373267,
+      "lower": 7.39759773662673,
+      "z_score": -1.3083147707644236,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "159915",
+      "name": "创业板ETF",
+      "date": "2026-07-22",
+      "close": 3.586,
+      "ma20": 3.9316000000000004,
+      "upper": 4.478831654978515,
+      "lower": 3.384368345021486,
+      "z_score": -1.2630848265295236,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "588000",
+      "name": "科创50ETF",
+      "date": "2026-07-22",
+      "close": 1.955,
+      "ma20": 2.10645,
+      "upper": 2.4024076605565483,
+      "lower": 1.810492339443452,
+      "z_score": -1.0234572047582646,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    }
+  ],
   "futures_signals": [
     {
       "symbol": "RU",
