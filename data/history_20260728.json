@@ -1,6 +1,77 @@
 {
-  "update_time": "2026-07-28 15:41:44",
-  "etf_signals": [],
+  "update_time": "2026-07-28 22:55:25",
+  "etf_signals": [
+    {
+      "symbol": "510050",
+      "name": "50ETF",
+      "date": "2026-07-28",
+      "close": 3.022,
+      "ma20": 3.03815,
+      "upper": 3.1168453486219954,
+      "lower": 2.9594546513780045,
+      "z_score": -0.4104435721499844,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "510300",
+      "name": "300ETF",
+      "date": "2026-07-28",
+      "close": 4.627,
+      "ma20": 4.79005,
+      "upper": 4.987447248421078,
+      "lower": 4.592652751578922,
+      "z_score": -1.651998711270683,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "510500",
+      "name": "500ETF",
+      "date": "2026-07-28",
+      "close": 7.463,
+      "ma20": 8.135299999999999,
+      "upper": 9.138373613292774,
+      "lower": 7.132226386707223,
+      "z_score": -1.3404798832122578,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "159915",
+      "name": "创业板ETF",
+      "date": "2026-07-28",
+      "close": 3.355,
+      "ma20": 3.7747,
+      "upper": 4.251844179909015,
+      "lower": 3.2975558200909854,
+      "z_score": -1.759216679872451,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "588000",
+      "name": "科创50ETF",
+      "date": "2026-07-28",
+      "close": 1.785,
+      "ma20": 2.03475,
+      "upper": 2.3490544953376804,
+      "lower": 1.7204455046623193,
+      "z_score": -1.589223213188059,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    }
+  ],
   "futures_signals": [
     {
       "symbol": "RU",
