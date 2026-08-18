@@ -1,6 +1,49 @@
 {
-  "update_time": "2026-08-18 15:56:07",
-  "etf_signals": [],
+  "update_time": "2026-08-18 22:19:13",
+  "etf_signals": [
+    {
+      "symbol": "510050",
+      "name": "50ETF",
+      "date": "2026-08-18",
+      "close": 3.047,
+      "ma20": 3.0394499999999995,
+      "upper": 3.093086103316217,
+      "lower": 2.985813896683782,
+      "z_score": 0.28152679009840814,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "510300",
+      "name": "300ETF",
+      "date": "2026-08-18",
+      "close": 4.787,
+      "ma20": 4.7125,
+      "upper": 4.834954717731629,
+      "lower": 4.590045282268371,
+      "z_score": 1.2167763134005667,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "510500",
+      "name": "500ETF",
+      "date": "2026-08-18",
+      "close": 8.185,
+      "ma20": 7.784050000000001,
+      "upper": 8.30980818936488,
+      "lower": 7.2582918106351215,
+      "z_score": 1.52522588562758,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    }
+  ],
   "futures_signals": [
     {
       "symbol": "RU",
