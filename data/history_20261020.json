@@ -1,16 +1,16 @@
 {
-  "update_time": "2026-10-20 00:53:41",
+  "update_time": "2026-10-20 14:04:04",
   "etf_signals": [],
   "futures_signals": [
     {
       "symbol": "RU",
       "name": "橡胶",
-      "date": "2026-10-19",
-      "close": 19705.0,
-      "ma20": 19517.25,
-      "upper": 20820.842102009192,
-      "lower": 18213.657897990808,
-      "z_score": 0.2880502263102484,
+      "date": "2026-10-20",
+      "close": 19865.0,
+      "ma20": 19562.0,
+      "upper": 20847.819009937044,
+      "lower": 18276.180990062956,
+      "z_score": 0.47129494533579147,
       "breakout_up": false,
       "breakout_down": false,
       "confirmed_up": false,
