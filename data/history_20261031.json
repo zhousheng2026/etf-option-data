@@ -1,0 +1,49 @@
+{
+  "update_time": "2026-10-31 01:24:43",
+  "etf_signals": [
+    {
+      "symbol": "510050",
+      "name": "50ETF",
+      "date": "2026-10-30",
+      "close": 2.862,
+      "ma20": 2.8882000000000003,
+      "upper": 2.947240039937231,
+      "lower": 2.8291599600627695,
+      "z_score": -0.887533274972545,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "510300",
+      "name": "300ETF",
+      "date": "2026-10-30",
+      "close": 4.065,
+      "ma20": 4.2538,
+      "upper": 4.489697033737863,
+      "lower": 4.017902966262137,
+      "z_score": -1.600698381055531,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    }
+  ],
+  "futures_signals": [
+    {
+      "symbol": "RU",
+      "name": "橡胶",
+      "date": "2026-10-30",
+      "close": 19170.0,
+      "ma20": 19753.0,
+      "upper": 20675.43042812806,
+      "lower": 18830.56957187194,
+      "z_score": -1.2640519701482829,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    }
+  ]
+}
