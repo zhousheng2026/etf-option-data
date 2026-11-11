@@ -1,0 +1,91 @@
+{
+  "update_time": "2026-11-11 01:41:17",
+  "etf_signals": [
+    {
+      "symbol": "510050",
+      "name": "50ETF",
+      "date": "2026-11-11",
+      "close": 2.886,
+      "ma20": 2.88,
+      "upper": 2.9253199154549345,
+      "lower": 2.8346800845450653,
+      "z_score": 0.2647842538879646,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "510300",
+      "name": "300ETF",
+      "date": "2026-11-11",
+      "close": 4.133,
+      "ma20": 4.15535,
+      "upper": 4.262263196467772,
+      "lower": 4.048436803532229,
+      "z_score": -0.41809618902822177,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "510500",
+      "name": "500ETF",
+      "date": "2026-11-11",
+      "close": 6.706,
+      "ma20": 6.66845,
+      "upper": 6.997573541034583,
+      "lower": 6.339326458965417,
+      "z_score": 0.2281817938757212,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "159915",
+      "name": "创业板ETF",
+      "date": "2026-11-11",
+      "close": 2.525,
+      "ma20": 2.598,
+      "upper": 2.8455649834945045,
+      "lower": 2.3504350165054952,
+      "z_score": -0.5897441469271472,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "588000",
+      "name": "科创50ETF",
+      "date": "2026-11-11",
+      "close": 1.341,
+      "ma20": 1.34935,
+      "upper": 1.4791600231309712,
+      "lower": 1.219539976869029,
+      "z_score": -0.12864954182429175,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    }
+  ],
+  "futures_signals": [
+    {
+      "symbol": "RU",
+      "name": "橡胶",
+      "date": "2026-11-10",
+      "close": 18800.0,
+      "ma20": 19365.0,
+      "upper": 20224.491893963623,
+      "lower": 18505.508106036377,
+      "z_score": -1.314730258582087,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    }
+  ]
+}
