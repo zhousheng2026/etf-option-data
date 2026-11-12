@@ -1,0 +1,35 @@
+{
+  "update_time": "2026-11-12 02:40:21",
+  "etf_signals": [
+    {
+      "symbol": "159915",
+      "name": "创业板ETF",
+      "date": "2026-11-12",
+      "close": 2.609,
+      "ma20": 2.5914,
+      "upper": 2.8170409817200373,
+      "lower": 2.365759018279963,
+      "z_score": 0.15600003036537893,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    }
+  ],
+  "futures_signals": [
+    {
+      "symbol": "RU",
+      "name": "橡胶",
+      "date": "2026-11-11",
+      "close": 19475.0,
+      "ma20": 19335.5,
+      "upper": 20132.024688221947,
+      "lower": 18538.975311778053,
+      "z_score": 0.3502716288967785,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    }
+  ]
+}
