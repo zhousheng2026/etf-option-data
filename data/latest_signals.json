@@ -1,6 +1,77 @@
 {
-  "update_time": "2026-11-16 19:13:42",
-  "etf_signals": [],
+  "update_time": "2026-11-17 04:18:00",
+  "etf_signals": [
+    {
+      "symbol": "510050",
+      "name": "50ETF",
+      "date": "2026-11-17",
+      "close": 2.877,
+      "ma20": 2.8813500000000003,
+      "upper": 2.9261948788368866,
+      "lower": 2.836505121163114,
+      "z_score": -0.19400208509081807,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "510300",
+      "name": "300ETF",
+      "date": "2026-11-17",
+      "close": 4.054,
+      "ma20": 4.12455,
+      "upper": 4.212785271620275,
+      "lower": 4.036314728379725,
+      "z_score": -1.5991337410648103,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "510500",
+      "name": "500ETF",
+      "date": "2026-11-17",
+      "close": 6.407,
+      "ma20": 6.5981499999999995,
+      "upper": 6.931498734731893,
+      "lower": 6.264801265268106,
+      "z_score": -1.1468470108562931,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "159915",
+      "name": "创业板ETF",
+      "date": "2026-11-17",
+      "close": 2.354,
+      "ma20": 2.5283,
+      "upper": 2.7416108431127593,
+      "lower": 2.314989156887241,
+      "z_score": -1.634234785785012,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "588000",
+      "name": "科创50ETF",
+      "date": "2026-11-17",
+      "close": 1.325,
+      "ma20": 1.33365,
+      "upper": 1.445866473131652,
+      "lower": 1.221433526868348,
+      "z_score": -0.154166313707826,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    }
+  ],
   "futures_signals": [
     {
       "symbol": "RU",
