@@ -1,0 +1,91 @@
+{
+  "update_time": "2026-11-20 02:49:13",
+  "etf_signals": [
+    {
+      "symbol": "510050",
+      "name": "50ETF",
+      "date": "2026-11-20",
+      "close": 2.834,
+      "ma20": 2.8836500000000003,
+      "upper": 2.926766854684618,
+      "lower": 2.8405331453153826,
+      "z_score": -2.3030436873547453,
+      "breakout_up": false,
+      "breakout_down": true,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "510300",
+      "name": "300ETF",
+      "date": "2026-11-20",
+      "close": 3.984,
+      "ma20": 4.10555,
+      "upper": 4.211309359421595,
+      "lower": 3.9997906405784054,
+      "z_score": -2.298614527636425,
+      "breakout_up": false,
+      "breakout_down": true,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "510500",
+      "name": "500ETF",
+      "date": "2026-11-20",
+      "close": 6.125,
+      "ma20": 6.509399999999999,
+      "upper": 6.885716999629965,
+      "lower": 6.133083000370034,
+      "z_score": -2.0429584652193875,
+      "breakout_up": false,
+      "breakout_down": true,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "159915",
+      "name": "创业板ETF",
+      "date": "2026-11-20",
+      "close": 2.249,
+      "ma20": 2.4699999999999998,
+      "upper": 2.7056384384692223,
+      "lower": 2.2343615615307773,
+      "z_score": -1.875755088479464,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    },
+    {
+      "symbol": "588000",
+      "name": "科创50ETF",
+      "date": "2026-11-20",
+      "close": 1.306,
+      "ma20": 1.31985,
+      "upper": 1.413557888787726,
+      "lower": 1.226142111212274,
+      "z_score": -0.29559944587747444,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    }
+  ],
+  "futures_signals": [
+    {
+      "symbol": "RU",
+      "name": "橡胶",
+      "date": "2026-11-19",
+      "close": 18675.0,
+      "ma20": 19200.75,
+      "upper": 19905.47297655456,
+      "lower": 18496.02702344544,
+      "z_score": -1.492075659489429,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    }
+  ]
+}
