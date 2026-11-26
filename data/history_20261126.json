@@ -1,0 +1,20 @@
+{
+  "update_time": "2026-11-26 03:55:41",
+  "etf_signals": [],
+  "futures_signals": [
+    {
+      "symbol": "RU",
+      "name": "橡胶",
+      "date": "2026-11-25",
+      "close": 18230.0,
+      "ma20": 18980.5,
+      "upper": 19806.3577677974,
+      "lower": 18154.6422322026,
+      "z_score": -1.8175042465281126,
+      "breakout_up": false,
+      "breakout_down": false,
+      "confirmed_up": false,
+      "confirmed_down": false
+    }
+  ]
+}
